@@ -10,7 +10,7 @@ import Spinner from "./components/SpinnerLoading";
 import ErrorDisplay from "./components/ErrorDisplay";
 import { useNewsByCategory, useSearchNews } from "./hooks/useNewsQuery";
 
-//Main App component that manages the news application
+// Main App component that manages the news application
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("general"); // Tracking the currently selected news category (default: general)
   const [searchQuery, setSearchQuery] = useState(""); // State for the current search query
@@ -58,7 +58,7 @@ function App() {
     refetch: refetchCategory,
   } = useNewsByCategory(selectedCategory, "us", 12);
 
-  //Custom hook to fetch news articles based on search query
+  // Custom hook to fetch news articles based on search query
   const {
     data: searchResults = [],
     isLoading: searchLoading,
