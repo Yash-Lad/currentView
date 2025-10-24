@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Get API key from environment variables
 const API_KEY= import.meta.env.VITE_NEWS_API_KEY
-const BASE_URL= "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://newsapi.org/v2")
+const BASE_URL= "https://gnews.io/api/v4"
 
 // Create axios instance with base configuration for News API
 export const newsAPI= axios.create({
@@ -13,14 +13,14 @@ export const newsAPI= axios.create({
     }
 })
 
-// Request interceptor - automatically adds API key to every request
-newsAPI.interceptors.request.use((config)=>{
-    config.params={
-        ...config.params,
-        apiKey: API_KEY
-    }
-    return config
-})
+// Request interceptor - API key is now passed directly in each request
+// newsAPI.interceptors.request.use((config)=>{
+//     config.params={
+//         ...config.params,
+//         apiKey: API_KEY
+//     }
+//     return config
+// })
 
 // Response interceptor - handles errors and logs them for debugging
 newsAPI.interceptors.response.use(
@@ -38,7 +38,8 @@ export const newsServices={
         try {
             const params={
                 country,
-                pageSize,
+                max: pageSize,
+                apikey: API_KEY
             }
 
             const response=await newsAPI.get('/top-headlines',{params})
@@ -53,12 +54,13 @@ export const newsServices={
         try {
             const params={
                 q:query,
-                language,
-                sortBy,
-                pageSize,
+                lang: language,
+                sortby: sortBy,
+                max: pageSize,
+                apikey: API_KEY
             }
 
-            const response=await newsAPI.get('/everything', {params})
+            const response=await newsAPI.get('/search', {params})
             return response.data
         } catch (error) {
             throw new Error(`Failed to fetch search news: ${error.message}`)
@@ -71,7 +73,8 @@ export const newsServices={
             const params={
                 category,
                 country,
-                pageSize
+                max: pageSize,
+                apikey: API_KEY
             }
 
             const response=await newsAPI.get('/top-headlines', {params})
@@ -86,10 +89,11 @@ export const newsServices={
     getSources:async(category=null, country=null,language='en' )=>{
         try {
             const params={
-                language,
+                lang: language,
                 // Only include category and country in params if they're provided
                 ...(category && {category}),
                 ...(country && {country}),
+                apikey: API_KEY
             }
 
             const response=await newsAPI.get('/sources', {params})
