@@ -4,7 +4,7 @@ import axios from 'axios'
 const API_KEY= import.meta.env.VITE_NEWS_API_KEY
 const BASE_URL= "https://gnews.io/api/v4"
 
-// Create axios instance with base configuration for News API
+// Create axios instance with base configuration for GNews API
 export const newsAPI= axios.create({
     baseURL:BASE_URL,
     timeout:10000, // 10 second timeout for requests
@@ -13,41 +13,32 @@ export const newsAPI= axios.create({
     }
 })
 
-// Request interceptor - API key is now passed directly in each request
-// newsAPI.interceptors.request.use((config)=>{
-//     config.params={
-//         ...config.params,
-//         apiKey: API_KEY
-//     }
-//     return config
-// })
-
 // Response interceptor - handles errors and logs them for debugging
 newsAPI.interceptors.response.use(
     (response)=>response,
     (error)=>{
-        console.error('News API error: ', error.response?.data || error.message)
+        console.error('GNews API error: ', error.response?.data || error.message)
         return Promise.reject(error)
     }
 )
 
-// Collection of functions to interact with the News API
+// Collection of functions to interact with the GNews API
 export const newsServices={
     //Fetches the latest top headlines for a specific country
-    getTopHeadlines:async(country='us', pageSize=20)=>{
-        try {
-            const params={
-                country,
-                max: pageSize,
-                apikey: API_KEY
-            }
+    // getTopHeadlines:async(country='us', pageSize=20)=>{
+    //     try {
+    //         const params={
+    //             country,
+    //             max: pageSize,
+    //             apikey: API_KEY
+    //         }
 
-            const response=await newsAPI.get('/top-headlines',{params})
-            return response.data
-        } catch (error) {
-            throw new Error(`Failed to fetch top headlines: ${error.message}`)             
-        }
-    },
+    //         const response=await newsAPI.get('/top-headlines',{params})
+    //         return response.data
+    //     } catch (error) {
+    //         throw new Error(`Failed to fetch top headlines: ${error.message}`)             
+    //     }
+    // },
 
     // Searches through millions of articles from various sources
     getEverything: async(query,language='en',sortBy='publishedAt', pageSize=20)=>{
@@ -86,20 +77,20 @@ export const newsServices={
     },
 
     // Gets a list of available news sources
-    getSources:async(category=null, country=null,language='en' )=>{
-        try {
-            const params={
-                lang: language,
-                // Only include category and country in params if they're provided
-                ...(category && {category}),
-                ...(country && {country}),
-                apikey: API_KEY
-            }
+    // getSources:async(category=null, country=null,language='en' )=>{
+    //     try {
+    //         const params={
+    //             lang: language,
+    //             // Only include category and country in params if they're provided
+    //             ...(category && {category}),
+    //             ...(country && {country}),
+    //             apikey: API_KEY
+    //         }
 
-            const response=await newsAPI.get('/sources', {params})
-            return response.data
-        } catch (error) {
-            throw new Error(`Failed to fetch news sources: ${error.message}`)
-        }
-    },
+    //         const response=await newsAPI.get('/sources', {params})
+    //         return response.data
+    //     } catch (error) {
+    //         throw new Error(`Failed to fetch news sources: ${error.message}`)
+    //     }
+    // },
 }

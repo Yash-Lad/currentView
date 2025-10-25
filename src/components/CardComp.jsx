@@ -30,8 +30,7 @@ const formatPublishedDate = (publishedDate) => {
  * Shows article image, category badge, publication date, title, description, and link to full article
  */
 export default function CardComp({
-  urlToImage,
-  category,
+  image,
   publishedAt,
   title,
   description,
@@ -39,14 +38,14 @@ export default function CardComp({
   newsSource,
   categoryColor,
 }) {
-  const [imgSrc, setImgSrc] = useState(urlToImage || placeHolder_Image); // Manage the image source, defaulting to placeholder if no image provided
+  const [imgSrc, setImgSrc] = useState(image || placeHolder_Image); // Manage the image source, defaulting to placeholder if no image provided
   const [hasError, setHasError] = useState(false); // Track if image loading has failed
 
   // Update image when urlToImage prop changes
   useEffect(() => {
-    setImgSrc(urlToImage || placeHolder_Image);
+    setImgSrc(image || placeHolder_Image);
     setHasError(false);
-  }, [urlToImage]);
+  }, [image]);
 
   const handleImageError = () => {
     if (!hasError) {
@@ -73,10 +72,9 @@ export default function CardComp({
               className="card_badge"
               style={{ "--badge-color": categoryColor }}
             >
-              {category.name}
+              {formatPublishedDate(publishedAt)}
             </Badge>
           </span>
-          <span>{formatPublishedDate(publishedAt)}</span>
         </div>
 
         {/* Article title and description */}

@@ -75,12 +75,11 @@ function App() {
   const newsCards = articlesToDisplay.map((article, index) => (
     <Col xs={12} sm={6} md={4} lg={3} key={index} className="d-flex">
       <CardComp
-        urlToImage={article.urlToImage}
+        image={article.image}
         publishedAt={article.publishedAt}
         title={article.title}
         description={article.description}
         url={article.url}
-        category={article.source}
         newsSource={article.source}
         categoryColor={selectedCategoryColor}
       />

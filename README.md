@@ -4,13 +4,14 @@ A modern, responsive news aggregator built with React that delivers real-time ne
 
 ## ✨ Features
 
-- **Real-time News**: Get the latest headlines from multiple categories
-- **Smart Search**: Optimized search with intelligent input delay to reduce API calls
-- **Category Filtering**: Browse news by General, Technology, Business, Science, Entertainment, Sports, and Health
-- **Dark/Light Mode**: Seamless theme switching with persistent preferences
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Error Handling**: Graceful error states with retry functionality
+- **Real-time News**: Get the latest headlines from multiple categories using GNews API
+- **Smart Search**: Optimized search with intelligent input delay (500ms) to reduce API calls
+- **Category Filtering**: Browse news by 9 categories: General, World, Nation, Technology, Business, Science, Entertainment, Sports, and Health
+- **Dark/Light Mode**: Seamless theme switching with persistent preferences and smooth transitions
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices with enhanced touch targets
+- **Error Handling**: Graceful error states with retry functionality and user-friendly messages
 - **Performance Optimized**: React Query for efficient data caching and management
+- **Modern UI**: Enhanced card design with gradient backgrounds, hover effects, and improved typography
 
 ## 🚀 Tech Stack
 
@@ -57,9 +58,9 @@ A modern, responsive news aggregator built with React that delivers real-time ne
 
 ## 📋 API Setup
 
-This application uses the News API. To get started:
+This application uses the GNews API. To get started:
 
-1. Visit [News API](https://newsapi.org/) and create a free account
+1. Visit [GNews API](https://gnews.io/) and create a free account
 2. Get your API key from the dashboard
 3. Add it to your `.env` file as `VITE_NEWS_API_KEY`
 
@@ -78,7 +79,7 @@ src/
 ├── hooks/              # Custom React hooks
 │   └── useNewsQuery.js # News data fetching hooks
 ├── services/           # API service layer
-│   └── newsServices.js # News API integration
+│   └── newsServices.js # GNews API integration
 ├── utils/              # Utility functions
 │   └── categoryTabColor.js # Category color mapping
 ├── assets/             # Static assets
@@ -93,25 +94,59 @@ src/
 
 - Intelligent input delay (500ms) to optimize API performance
 - Automatic category clearing when searching
-- Real-time search results
+- Real-time search results with GNews API integration
+- Enhanced search experience with better error handling
 
 ### Category System
 
-- Color-coded category tabs
-- Smooth underline animations
-- Responsive tab layout
+- Color-coded category tabs with 9 distinct categories
+- Smooth underline animations with CSS transitions
+- Responsive tab layout with mobile optimization
+- Dynamic color theming for each category with improved visual hierarchy
 
 ### Dark Mode
 
-- CSS custom properties for theming
-- LocalStorage persistence
-- Smooth transitions
+- CSS custom properties for comprehensive theming
+- LocalStorage persistence for user preferences
+- Smooth transitions between light and dark modes
+- Enhanced card styling with gradient backgrounds and improved contrast
 
 ### Performance
 
-- React Query for data caching
-- Optimized re-renders
-- Image error handling with fallbacks
+- React Query for efficient data caching and management
+- Optimized re-renders with proper dependency management
+- Image error handling with placeholder fallbacks
+- GNews API integration with improved timeout and error handling
+
+### UI Enhancements
+
+- Modern card design with gradient backgrounds and hover effects
+- Enhanced typography with improved font weights and spacing
+- Better responsive design with optimized mobile layouts
+- Improved visual hierarchy with enhanced contrast and readability
+- Smooth animations and transitions throughout the interface
+
+## 🆕 Recent Updates
+
+### Enhanced Category System
+
+- **9 distinct categories** with unique color coding: General, World, Nation, Technology, Business, Science, Entertainment, Sports, and Health
+- **Improved responsive design** for category tabs with better mobile optimization
+- **Enhanced visual hierarchy** with smooth underline animations and better contrast
+
+### UI/UX Improvements
+
+- **Modern card design** with gradient backgrounds and sophisticated hover effects
+- **Enhanced typography** with improved font weights and spacing for better readability
+- **Optimized mobile experience** with improved touch targets and responsive layouts
+- **Smooth animations** and transitions throughout the interface
+
+### Technical Improvements
+
+- **Enhanced error handling** with user-friendly error messages and retry functionality
+- **Improved image fallbacks** with placeholder images and robust error handling
+- **Better performance** with optimized re-renders and efficient data management
+- **Enhanced accessibility** with focus states and keyboard navigation
 
 ## 📱 Responsive Design
 
