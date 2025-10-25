@@ -4,14 +4,25 @@ A modern, responsive news aggregator built with React that delivers real-time ne
 
 ## ✨ Features
 
+### Core Functionality
+
 - **Real-time News**: Get the latest headlines from multiple categories using GNews API
 - **Smart Search**: Optimized search with intelligent input delay (500ms) to reduce API calls
-- **Category Filtering**: Browse news by 9 categories: General, World, Nation, Technology, Business, Science, Entertainment, Sports, and Health
+- **Category Filtering**: Browse news by 9 distinct categories with unique color coding: General, World, Nation, Technology, Business, Science, Entertainment, Sports, and Health
+
+### User Experience
+
 - **Dark/Light Mode**: Seamless theme switching with persistent preferences and smooth transitions
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices with enhanced touch targets
-- **Error Handling**: Graceful error states with retry functionality and user-friendly messages
-- **Performance Optimized**: React Query for efficient data caching and management
-- **Modern UI**: Enhanced card design with gradient backgrounds, hover effects, and improved typography
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices with enhanced touch targets and improved mobile layouts
+- **Modern UI**: Enhanced card design with gradient backgrounds, sophisticated hover effects, and improved typography
+- **Smooth Animations**: Transitions and animations throughout the interface for better user experience
+
+### Technical Features
+
+- **Error Handling**: Graceful error states with user-friendly messages, retry functionality, and robust image fallbacks
+- **Performance Optimized**: React Query for efficient data caching, optimized re-renders, and efficient data management
+- **Enhanced Accessibility**: Focus states and keyboard navigation support
+- **Visual Hierarchy**: Improved contrast, better readability, and enhanced visual hierarchy with smooth underline animations
 
 ## 🚀 Tech Stack
 
@@ -126,28 +137,6 @@ src/
 - Improved visual hierarchy with enhanced contrast and readability
 - Smooth animations and transitions throughout the interface
 
-## 🆕 Recent Updates
-
-### Enhanced Category System
-
-- **9 distinct categories** with unique color coding: General, World, Nation, Technology, Business, Science, Entertainment, Sports, and Health
-- **Improved responsive design** for category tabs with better mobile optimization
-- **Enhanced visual hierarchy** with smooth underline animations and better contrast
-
-### UI/UX Improvements
-
-- **Modern card design** with gradient backgrounds and sophisticated hover effects
-- **Enhanced typography** with improved font weights and spacing for better readability
-- **Optimized mobile experience** with improved touch targets and responsive layouts
-- **Smooth animations** and transitions throughout the interface
-
-### Technical Improvements
-
-- **Enhanced error handling** with user-friendly error messages and retry functionality
-- **Improved image fallbacks** with placeholder images and robust error handling
-- **Better performance** with optimized re-renders and efficient data management
-- **Enhanced accessibility** with focus states and keyboard navigation
-
 ## 📱 Responsive Design
 
 The application is fully responsive with breakpoints for:
@@ -155,14 +144,6 @@ The application is fully responsive with breakpoints for:
 - Desktop (1200px+)
 - Tablet (768px - 1199px)
 - Mobile (320px - 767px)
-
-## 🚀 Deployment
-
-The application can be deployed to any static hosting service:
-
-- **Vercel**: Connect your GitHub repository
-- **Netlify**: Drag and drop the `dist` folder
-- **GitHub Pages**: Use GitHub Actions for automated deployment
 
 ## 🤝 Contributing
 
