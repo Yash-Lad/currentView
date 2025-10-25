@@ -2,8 +2,8 @@ import axios from 'axios'
 
 // Get API key from environment variables
 const API_KEY= import.meta.env.VITE_GNEWS_API_KEY
-// Use proxy endpoint in development, direct API in production
-const BASE_URL= import.meta.env.DEV ? "/api/gnews" : "https://gnews.io/api/v4"
+// Use proxy endpoint for both development and production to avoid CORS issues
+const BASE_URL= "/api/gnews"
 
 // Create axios instance with base configuration for GNews API
 export const newsAPI= axios.create({
