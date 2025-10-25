@@ -10,20 +10,6 @@ export default defineConfig({
         target: 'https://gnews.io/api/v4',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/gnews/, ''),
-        configure: (proxy, _options) => {
-          // Only add logging in development mode
-          if (process.env.NODE_ENV === 'development') {
-            proxy.on('error', (err, _req, _res) => {
-              console.log('proxy error', err);
-            });
-            proxy.on('proxyReq', (proxyReq, req, _res) => {
-              console.log('Sending Request to the Target:', req.method, req.url);
-            });
-            proxy.on('proxyRes', (proxyRes, req, _res) => {
-              console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
-            });
-          }
-        },
       }
     }
   }

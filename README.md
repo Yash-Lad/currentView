@@ -53,7 +53,7 @@ A modern, responsive news aggregator built with React that delivers real-time ne
    Create a `.env` file in the root directory:
 
    ```env
-   VITE_NEWS_API_KEY=your_news_api_key_here
+   VITE_GNEWS_API_KEY=your_news_api_key_here
    ```
 
 4. **Start the development server**
