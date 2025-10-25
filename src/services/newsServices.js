@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // Get API key from environment variables
-const API_KEY= import.meta.env.VITE_NEWS_API_KEY
+const API_KEY= import.meta.env.NEWS_API_KEY
 // Use proxy endpoint in development, direct API in production
 const BASE_URL= import.meta.env.DEV ? "/api/gnews" : "https://gnews.io/api/v4"
 
