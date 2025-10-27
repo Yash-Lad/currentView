@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   try {
     // Get API key from env vars
-    const apiKey = process.env.VITE_GNEWS_API_KEY;
+    const apiKey = process.env.GNEWS_API_KEY;
     
     if (!apiKey) {
       res.status(500).json({ error: 'API key not configured' });
