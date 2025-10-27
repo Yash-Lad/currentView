@@ -26,6 +26,11 @@ export default async function handler(req, res) {
       return;
     }
 
+    // Extract the endpoint from the URL path
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const pathSegments = url.pathname.split('/').filter(segment => segment);
+    const endpoint = pathSegments[pathSegments.length - 1]; // Get the last segment (top-headlines or search)
+
     // Get all the query params from the request
     const { category, country, max, q, lang, sortby } = req.query;
 
@@ -33,7 +38,7 @@ export default async function handler(req, res) {
     const gnewsUrl = new URL('https://gnews.io/api/v4');
     
     // Choose endpoint: search or top-headlines
-    if (q) {
+    if (endpoint === 'search' || q) {
       gnewsUrl.pathname += '/search';
       gnewsUrl.searchParams.set('q', q);
       if (lang) gnewsUrl.searchParams.set('lang', lang);
