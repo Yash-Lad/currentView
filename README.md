@@ -4,35 +4,25 @@ A modern, responsive news aggregator built with React that delivers real-time ne
 
 ## ✨ Features
 
-### Core Functionality
-
-- **Real-time News**: Get the latest headlines from multiple categories using GNews API
-- **Smart Search**: Optimized search with intelligent input delay (500ms) to reduce API calls
-- **Category Filtering**: Browse news by 9 distinct categories with unique color coding: General, World, Nation, Technology, Business, Science, Entertainment, Sports, and Health
-
-### User Experience
-
-- **Dark/Light Mode**: Seamless theme switching with persistent preferences and smooth transitions
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices with enhanced touch targets and improved mobile layouts
-- **Modern UI**: Enhanced card design with gradient backgrounds, sophisticated hover effects, and improved typography
-- **Smooth Animations**: Transitions and animations throughout the interface for better user experience
-
-### Technical Features
-
-- **Error Handling**: Graceful error states with user-friendly messages, retry functionality, and robust image fallbacks
-- **Performance Optimized**: React Query for efficient data caching, optimized re-renders, and efficient data management
-- **Enhanced Accessibility**: Focus states and keyboard navigation support
-- **Visual Hierarchy**: Improved contrast, better readability, and enhanced visual hierarchy with smooth underline animations
+- **Real-time News**: Latest headlines from 9 categories using GNews API
+- **Smart Search**: Optimized search with intelligent input delay (500ms)
+- **Category Filtering**: General, World, Nation, Technology, Business, Science, Entertainment, Sports, and Health
+- **Dark/Light Mode**: Seamless theme switching with persistent preferences
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Modern UI**: Enhanced card design with gradient backgrounds and smooth animations
+- **Performance Optimized**: React Query for efficient data caching and management
+- **Error Handling**: Graceful error states with user-friendly messages and retry functionality
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React 19.1.1 with Vite
-- **Styling**: Bootstrap 5.3.8 + Custom CSS
+- **Frontend**: React with Vite
+- **Styling**: Bootstrap + Custom CSS with CSS Variables
 - **State Management**: React Query (TanStack Query)
 - **HTTP Client**: Axios
 - **Icons**: FontAwesome + Lucide React
+- **UI Components**: React Bootstrap + React Switch
 - **Build Tool**: Vite with SWC
-- **Linting**: ESLint
+- **Deployment**: Vercel with Serverless Functions
 
 ## 🛠️ Installation
 
@@ -67,75 +57,100 @@ A modern, responsive news aggregator built with React that delivers real-time ne
    npm run build
    ```
 
+## 🚀 Deployment
+
+This app is optimized for Vercel deployment with serverless functions:
+
+1. **Connect your repository to Vercel**
+2. **Set environment variable**: Add `GNEWS_API_KEY` in Vercel dashboard
+3. **Deploy**: Vercel auto-detects Vite config and handles the rest
+
+The `vercel.json` file configures the API proxy to handle CORS issues in production.
+
 ## 📋 API Setup
 
-This application uses the GNews API. To get started:
+This application uses the GNews API with a proxy server to avoid CORS issues:
 
 1. Visit [GNews API](https://gnews.io/) and create a free account
 2. Get your API key from the dashboard
-3. Add it to your `.env` file as `VITE_NEWS_API_KEY`
+3. Add it to your `.env` file as `VITE_GNEWS_API_KEY`
+4. For production deployment on Vercel, add the API key as `GNEWS_API_KEY` in your Vercel environment variables
+
+### API Proxy Configuration
+
+The application includes a Vercel serverless function (`api/gnews.js`) that acts as a proxy to the GNews API:
+
+- Handles CORS headers automatically
+- Validates API keys server-side
+- Provides error handling and logging
+- Supports both search and top-headlines endpoints
 
 ## 🎨 Project Structure
 
 ```
-src/
-├── components/          # Reusable UI components
-│   ├── CardComp.jsx    # News article card component
-│   ├── CategoryComp.jsx # Search and category filter
-│   ├── DarkModeToggle.jsx # Theme switcher
-│   ├── ErrorDisplay.jsx # Error state component
-│   ├── HeroComp.jsx    # Landing section
-│   ├── NavbarComp.jsx  # Navigation bar
-│   └── SpinnerLoading.jsx # Loading indicator
-├── hooks/              # Custom React hooks
-│   └── useNewsQuery.js # News data fetching hooks
-├── services/           # API service layer
-│   └── newsServices.js # GNews API integration
-├── utils/              # Utility functions
-│   └── categoryTabColor.js # Category color mapping
-├── assets/             # Static assets
-├── App.jsx            # Main application component
-├── App.css            # Global styles and themes
-└── main.jsx           # Application entry point
+├── api/                # Vercel serverless functions
+│   └── gnews.js       # GNews API proxy for CORS handling
+├── public/             # Static assets and favicons
+│   └── favicon_io/    # Favicon files
+├── src/
+│   ├── components/     # Reusable UI components
+│   │   ├── CardComp.jsx    # News article card component
+│   │   ├── CategoryComp.jsx # Search and category filter
+│   │   ├── DarkModeToggle.jsx # Theme switcher
+│   │   ├── ErrorDisplay.jsx # Error state component
+│   │   ├── HeroComp.jsx    # Landing section
+│   │   ├── NavbarComp.jsx  # Navigation bar
+│   │   └── SpinnerLoading.jsx # Loading indicator
+│   ├── hooks/          # Custom React hooks
+│   │   └── useNewsQuery.js # News data fetching hooks
+│   ├── services/       # API service layer
+│   │   └── newsServices.js # GNews API integration
+│   ├── utils/          # Utility functions
+│   │   └── categoryTabColor.js # Category color mapping
+│   ├── assets/         # Static assets
+│   │   └── No-Image-Placeholder.jpg # Fallback image
+│   ├── App.jsx        # Main application component
+│   ├── App.css        # Global styles and themes
+│   └── main.jsx       # Application entry point
+├── vercel.json        # Vercel deployment configuration
+├── vite.config.js     # Vite configuration with proxy
+├── eslint.config.js   # ESLint configuration
+└── package.json       # Dependencies and scripts
 ```
 
-## 🔧 Key Features Implementation
+## 🔧 Key Features
 
 ### Smart Search
 
 - Intelligent input delay (500ms) to optimize API performance
 - Automatic category clearing when searching
 - Real-time search results with GNews API integration
-- Enhanced search experience with better error handling
 
 ### Category System
 
 - Color-coded category tabs with 9 distinct categories
 - Smooth underline animations with CSS transitions
 - Responsive tab layout with mobile optimization
-- Dynamic color theming for each category with improved visual hierarchy
 
 ### Dark Mode
 
 - CSS custom properties for comprehensive theming
 - LocalStorage persistence for user preferences
 - Smooth transitions between light and dark modes
-- Enhanced card styling with gradient backgrounds and improved contrast
 
 ### Performance
 
 - React Query for efficient data caching and management
 - Optimized re-renders with proper dependency management
 - Image error handling with placeholder fallbacks
-- GNews API integration with improved timeout and error handling
+- Vercel serverless function proxy for optimal API performance
 
-### UI Enhancements
+### API Integration
 
-- Modern card design with gradient backgrounds and hover effects
-- Enhanced typography with improved font weights and spacing
-- Better responsive design with optimized mobile layouts
-- Improved visual hierarchy with enhanced contrast and readability
-- Smooth animations and transitions throughout the interface
+- **CORS-Free API Access**: Vercel serverless function proxy eliminates CORS issues
+- **Secure API Key Handling**: API keys stored server-side, not exposed to client
+- **Smart Error Handling**: Comprehensive error handling with user-friendly messages
+- **Rate Limit Management**: Automatic handling of API rate limits and timeouts
 
 ## 📱 Responsive Design
 
